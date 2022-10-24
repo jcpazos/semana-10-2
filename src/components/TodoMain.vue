@@ -67,10 +67,10 @@
         onDateInput(e) {
             this.newDate = e.target.value;
         },
-        onAddTodo() {
-            
+        onAddTodo() {   
             this.todos.push({"description": this.newTodo, "date": this.newDate, "isExpired": checkExpired(this.newDate)});
             this.newTodo = "";
+            this.newDate = "";
             localStorage.setItem(sessionStorage.getItem("user"), JSON.stringify(this.todos));
         },
         onDeleteTodo(e) {
