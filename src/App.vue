@@ -1,15 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="TODOs logo" src="./assets/todos-icon.png">
+  <HelloWorld msg="Welcome to your TODOs app"/>
+  <TodoLogin @user-login="onUserLogin" v-if="!loggedIn"></TodoLogin>
+  <TodoMain v-if="loggedIn"></TodoMain>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import TodoMain from './components/TodoMain.vue'
+import TodoLogin from './components/TodoLogin.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    HelloWorld,
+    TodoMain,
+    TodoLogin
+  },
+  data () {
+    return {
+      loggedIn: false
+    }
+  },
+  created() {
+    if (sessionStorage.getItem('user')) {
+      this.loggedIn = true;
+    }
+  },
+  methods: {
+    onUserLogin() {
+      this.loggedIn = true;
+    }
   }
 }
 </script>
